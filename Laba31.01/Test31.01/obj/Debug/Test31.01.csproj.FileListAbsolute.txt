@@ -1,0 +1,8 @@
+C:\Users\User\Desktop\Test31.01\Test31.01\bin\Debug\Test31.01.exe.config
+C:\Users\User\Desktop\Test31.01\Test31.01\bin\Debug\Test31.01.exe
+C:\Users\User\Desktop\Test31.01\Test31.01\bin\Debug\Test31.01.pdb
+C:\Users\User\Desktop\Test31.01\Test31.01\obj\Debug\Test31.01.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Test31.01\Test31.01\obj\Debug\Test31.01.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\Test31.01\Test31.01\obj\Debug\Test31.01.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Test31.01\Test31.01\obj\Debug\Test31.01.exe
+C:\Users\User\Desktop\Test31.01\Test31.01\obj\Debug\Test31.01.pdb
