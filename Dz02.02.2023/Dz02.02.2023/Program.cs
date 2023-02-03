@@ -70,6 +70,7 @@ namespace Dz02._02._2023 {
         static void Main(string[] args) {
             Program.Task1();
             Program.Task2();
+            Console.ReadKey();
         }
     }
 }
