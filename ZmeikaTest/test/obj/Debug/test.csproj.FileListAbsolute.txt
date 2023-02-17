@@ -1,0 +1,16 @@
+D:\Dz\2 курс\.NET\test\test\obj\Debug\test.csproj.AssemblyReference.cache
+D:\Dz\2 курс\.NET\test\test\obj\Debug\test.csproj.SuggestedBindingRedirects.cache
+D:\Dz\2 курс\.NET\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+D:\Dz\2 курс\.NET\test\test\bin\Debug\test.exe.config
+D:\Dz\2 курс\.NET\test\test\bin\Debug\test.exe
+D:\Dz\2 курс\.NET\test\test\bin\Debug\test.pdb
+D:\Dz\2 курс\.NET\test\test\obj\Debug\test.exe
+D:\Dz\2 курс\.NET\test\test\obj\Debug\test.pdb
+C:\Users\User\Desktop\test\test\bin\Debug\test.exe.config
+C:\Users\User\Desktop\test\test\bin\Debug\test.exe
+C:\Users\User\Desktop\test\test\bin\Debug\test.pdb
+C:\Users\User\Desktop\test\test\obj\Debug\test.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\test\test\obj\Debug\test.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\test\test\obj\Debug\test.exe
+C:\Users\User\Desktop\test\test\obj\Debug\test.pdb
