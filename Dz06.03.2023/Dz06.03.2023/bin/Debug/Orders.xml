@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<orders>
+	<!--Заказы-->
+	<firstorder>
+		<!--Первый заказ-->
+		<productone>Пылесос</productone>
+		<producttwo>Печатная машинка</producttwo>
+		<productthree>Ножницы</productthree>
+	</firstorder>
+	<secondorder>
+		<!--Второй заказ-->
+		<productone>Машина</productone>
+		<producttwo>Стамеска</producttwo>
+		<productthree>Шкаф</productthree>
+	</secondorder>
+	<thirdorder>
+		<!--Третий заказы-->
+		<productone>Часы</productone>
+		<producttwo>Скамейка</producttwo>
+		<productthree>Шифер</productthree>
+	</thirdorder>
+</orders>
