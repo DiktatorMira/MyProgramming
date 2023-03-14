@@ -6,3 +6,11 @@ C:\Users\User\Desktop\Project1\Project1\obj\Debug\Project1.csproj.SuggestedBindi
 C:\Users\User\Desktop\Project1\Project1\obj\Debug\Project1.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\Project1\Project1\obj\Debug\Project1.exe
 C:\Users\User\Desktop\Project1\Project1\obj\Debug\Project1.pdb
+C:\Users\User\Desktop\C#_projects\Project1\Project1\bin\Debug\Project1.exe.config
+C:\Users\User\Desktop\C#_projects\Project1\Project1\bin\Debug\Project1.exe
+C:\Users\User\Desktop\C#_projects\Project1\Project1\bin\Debug\Project1.pdb
+C:\Users\User\Desktop\C#_projects\Project1\Project1\obj\Debug\Project1.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\C#_projects\Project1\Project1\obj\Debug\Project1.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\C#_projects\Project1\Project1\obj\Debug\Project1.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\C#_projects\Project1\Project1\obj\Debug\Project1.exe
+C:\Users\User\Desktop\C#_projects\Project1\Project1\obj\Debug\Project1.pdb
