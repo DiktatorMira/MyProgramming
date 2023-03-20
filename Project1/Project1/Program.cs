@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Project1 {
     internal class Program {
         static void Main(string[] args) {
-            EngRus obj = new EngRus();
+            Slovar obj = new Slovar();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
             Console.WriteLine("Здравия желаю, перед вами приложение\n\"Словарь\"разработанное @diktator_mira");

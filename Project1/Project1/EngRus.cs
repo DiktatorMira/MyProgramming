@@ -8,10 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Project1 {
-    internal class EngRus {
+    internal class Slovar {
         public List<Tuple<string, string>> MyDictionary { get; set; }
         public int Count { get; set; }
-        public EngRus() {
+        public Slovar() {
             MyDictionary = new List<Tuple<string, string>>();
             Count = MyDictionary.Count;
         }
