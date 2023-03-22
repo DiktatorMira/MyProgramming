@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{635D3DB8-E420-4C92-B345-640B62FCCF0F}</ProjectGuid>
+    <ProjectGuid>{EB4E8F91-05D7-4575-A2C6-396F4B60F07E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Dz22._03._2023</RootNamespace>
     <AssemblyName>Dz22.03.2023</AssemblyName>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICarBuilder.cs" />
+    <Compile Include="ATM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
