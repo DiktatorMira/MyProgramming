@@ -1,0 +1,8 @@
+C:\Users\User\Desktop\Dz31.03.2023_1\Dz31.03.2023_1\obj\Debug\Dz31.03.2023_1.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Dz31.03.2023_1\Dz31.03.2023_1\obj\Debug\Dz31.03.2023_1.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\Dz31.03.2023_1\Dz31.03.2023_1\obj\Debug\Dz31.03.2023_1.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Dz31.03.2023_1\Dz31.03.2023_1\bin\Debug\Dz31.03.2023_1.exe.config
+C:\Users\User\Desktop\Dz31.03.2023_1\Dz31.03.2023_1\bin\Debug\Dz31.03.2023_1.exe
+C:\Users\User\Desktop\Dz31.03.2023_1\Dz31.03.2023_1\bin\Debug\Dz31.03.2023_1.pdb
+C:\Users\User\Desktop\Dz31.03.2023_1\Dz31.03.2023_1\obj\Debug\Dz31.03.2023_1.exe
+C:\Users\User\Desktop\Dz31.03.2023_1\Dz31.03.2023_1\obj\Debug\Dz31.03.2023_1.pdb
