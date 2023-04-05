@@ -1,0 +1,11 @@
+C:\Users\User\Desktop\Para05.04\Para05.04\bin\Debug\Para05.04.exe.config
+C:\Users\User\Desktop\Para05.04\Para05.04\bin\Debug\Para05.04.exe
+C:\Users\User\Desktop\Para05.04\Para05.04\bin\Debug\Para05.04.pdb
+C:\Users\User\Desktop\Para05.04\Para05.04\obj\Debug\Para05.04.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Para05.04\Para05.04\obj\Debug\Para05.04.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\Para05.04\Para05.04\obj\Debug\Para05._04.Form1.resources
+C:\Users\User\Desktop\Para05.04\Para05.04\obj\Debug\Para05._04.Properties.Resources.resources
+C:\Users\User\Desktop\Para05.04\Para05.04\obj\Debug\Para05.04.csproj.GenerateResource.cache
+C:\Users\User\Desktop\Para05.04\Para05.04\obj\Debug\Para05.04.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Para05.04\Para05.04\obj\Debug\Para05.04.exe
+C:\Users\User\Desktop\Para05.04\Para05.04\obj\Debug\Para05.04.pdb
