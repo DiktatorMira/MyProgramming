@@ -71,12 +71,18 @@
             this.group6 = new System.Windows.Forms.GroupBox();
             this.check3 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.strip1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip31 = new System.Windows.Forms.ToolStripMenuItem();
             this.group1.SuspendLayout();
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
             this.group4.SuspendLayout();
             this.group5.SuspendLayout();
             this.group6.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // group1
@@ -93,7 +99,7 @@
             this.group1.Controls.Add(this.textBox1);
             this.group1.Controls.Add(this.combo1);
             this.group1.Controls.Add(this.label1);
-            this.group1.Location = new System.Drawing.Point(28, 22);
+            this.group1.Location = new System.Drawing.Point(28, 57);
             this.group1.Name = "group1";
             this.group1.Size = new System.Drawing.Size(200, 304);
             this.group1.TabIndex = 0;
@@ -274,7 +280,7 @@
             this.group4.Controls.Add(this.check11);
             this.group4.Controls.Add(this.label8);
             this.group4.Controls.Add(this.label7);
-            this.group4.Location = new System.Drawing.Point(245, 22);
+            this.group4.Location = new System.Drawing.Point(245, 57);
             this.group4.Name = "group4";
             this.group4.Size = new System.Drawing.Size(281, 304);
             this.group4.TabIndex = 1;
@@ -507,7 +513,7 @@
             // 
             this.group6.Controls.Add(this.check3);
             this.group6.Controls.Add(this.label10);
-            this.group6.Location = new System.Drawing.Point(28, 346);
+            this.group6.Location = new System.Drawing.Point(28, 367);
             this.group6.Name = "group6";
             this.group6.Size = new System.Drawing.Size(498, 71);
             this.group6.TabIndex = 2;
@@ -535,14 +541,58 @@
             this.label10.TabIndex = 2;
             this.label10.Text = "0 грн";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.strip3,
+            this.strip1,
+            this.strip2});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(559, 28);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // strip1
+            // 
+            this.strip1.Name = "strip1";
+            this.strip1.Size = new System.Drawing.Size(66, 24);
+            this.strip1.Text = "Сброс";
+            this.strip1.Click += new System.EventHandler(this.strip1_Click);
+            // 
+            // strip2
+            // 
+            this.strip2.Name = "strip2";
+            this.strip2.Size = new System.Drawing.Size(67, 24);
+            this.strip2.Text = "Выход";
+            this.strip2.Click += new System.EventHandler(this.strip2_Click);
+            // 
+            // strip3
+            // 
+            this.strip3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.strip31});
+            this.strip3.Name = "strip3";
+            this.strip3.Size = new System.Drawing.Size(65, 24);
+            this.strip3.Text = "Далее";
+            // 
+            // strip31
+            // 
+            this.strip31.Name = "strip31";
+            this.strip31.Size = new System.Drawing.Size(225, 26);
+            this.strip31.Text = "Следующий клиент";
+            this.strip31.Click += new System.EventHandler(this.strip31_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(559, 450);
             this.Controls.Add(this.group6);
             this.Controls.Add(this.group4);
             this.Controls.Add(this.group1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Окко";
             this.group1.ResumeLayout(false);
@@ -557,7 +607,10 @@
             this.group5.PerformLayout();
             this.group6.ResumeLayout(false);
             this.group6.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -606,6 +659,11 @@
         private System.Windows.Forms.GroupBox group6;
         private System.Windows.Forms.Button check3;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem strip1;
+        private System.Windows.Forms.ToolStripMenuItem strip2;
+        private System.Windows.Forms.ToolStripMenuItem strip3;
+        private System.Windows.Forms.ToolStripMenuItem strip31;
     }
 }
 

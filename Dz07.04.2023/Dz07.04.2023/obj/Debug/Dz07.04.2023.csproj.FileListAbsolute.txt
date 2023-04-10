@@ -9,3 +9,14 @@ C:\Users\User\Desktop\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.csproj.Ge
 C:\Users\User\Desktop\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.exe
 C:\Users\User\Desktop\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.pdb
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\bin\Debug\Dz07.04.2023.exe.config
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\bin\Debug\Dz07.04.2023.exe
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\bin\Debug\Dz07.04.2023.pdb
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07._04._2023.Form1.resources
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07._04._2023.Properties.Resources.resources
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.csproj.GenerateResource.cache
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.exe
+C:\Users\User\Desktop\C#_projects\Dz07.04.2023\Dz07.04.2023\obj\Debug\Dz07.04.2023.pdb
