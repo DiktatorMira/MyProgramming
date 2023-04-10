@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.group1 = new System.Windows.Forms.GroupBox();
             this.check1 = new System.Windows.Forms.Button();
             this.group3 = new System.Windows.Forms.GroupBox();
@@ -72,10 +73,15 @@
             this.check3 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.strip1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.strip2 = new System.Windows.Forms.ToolStripMenuItem();
             this.strip3 = new System.Windows.Forms.ToolStripMenuItem();
             this.strip31 = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.context1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmenu11 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu111 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmenu12 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmenu13 = new System.Windows.Forms.ToolStripMenuItem();
             this.group1.SuspendLayout();
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
@@ -83,6 +89,7 @@
             this.group5.SuspendLayout();
             this.group6.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.context1.SuspendLayout();
             this.SuspendLayout();
             // 
             // group1
@@ -554,20 +561,6 @@
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // strip1
-            // 
-            this.strip1.Name = "strip1";
-            this.strip1.Size = new System.Drawing.Size(66, 24);
-            this.strip1.Text = "Сброс";
-            this.strip1.Click += new System.EventHandler(this.strip1_Click);
-            // 
-            // strip2
-            // 
-            this.strip2.Name = "strip2";
-            this.strip2.Size = new System.Drawing.Size(67, 24);
-            this.strip2.Text = "Выход";
-            this.strip2.Click += new System.EventHandler(this.strip2_Click);
-            // 
             // strip3
             // 
             this.strip3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -583,11 +576,65 @@
             this.strip31.Text = "Следующий клиент";
             this.strip31.Click += new System.EventHandler(this.strip31_Click);
             // 
+            // strip1
+            // 
+            this.strip1.Name = "strip1";
+            this.strip1.Size = new System.Drawing.Size(66, 24);
+            this.strip1.Text = "Сброс";
+            this.strip1.Click += new System.EventHandler(this.strip1_Click);
+            // 
+            // strip2
+            // 
+            this.strip2.Name = "strip2";
+            this.strip2.Size = new System.Drawing.Size(67, 24);
+            this.strip2.Text = "Выход";
+            this.strip2.Click += new System.EventHandler(this.strip2_Click);
+            // 
+            // context1
+            // 
+            this.context1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.context1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmenu11,
+            this.cmenu12,
+            this.cmenu13});
+            this.context1.Name = "context1";
+            this.context1.Size = new System.Drawing.Size(123, 76);
+            // 
+            // cmenu11
+            // 
+            this.cmenu11.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu111});
+            this.cmenu11.Name = "cmenu11";
+            this.cmenu11.Size = new System.Drawing.Size(122, 24);
+            this.cmenu11.Text = "Далее";
+            // 
+            // menu111
+            // 
+            this.menu111.Name = "menu111";
+            this.menu111.Size = new System.Drawing.Size(225, 26);
+            this.menu111.Text = "Следующий клиент";
+            this.menu111.Click += new System.EventHandler(this.menu111_Click);
+            // 
+            // cmenu12
+            // 
+            this.cmenu12.Name = "cmenu12";
+            this.cmenu12.Size = new System.Drawing.Size(122, 24);
+            this.cmenu12.Text = "Сброс";
+            this.cmenu12.Click += new System.EventHandler(this.cmenu12_Click);
+            // 
+            // cmenu13
+            // 
+            this.cmenu13.Name = "cmenu13";
+            this.cmenu13.Size = new System.Drawing.Size(122, 24);
+            this.cmenu13.Text = "Выход";
+            this.cmenu13.Click += new System.EventHandler(this.cmenu13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(559, 450);
+            this.ContextMenuStrip = this.context1;
             this.Controls.Add(this.group6);
             this.Controls.Add(this.group4);
             this.Controls.Add(this.group1);
@@ -609,6 +656,7 @@
             this.group6.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.context1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -664,6 +712,11 @@
         private System.Windows.Forms.ToolStripMenuItem strip2;
         private System.Windows.Forms.ToolStripMenuItem strip3;
         private System.Windows.Forms.ToolStripMenuItem strip31;
+        private System.Windows.Forms.ContextMenuStrip context1;
+        private System.Windows.Forms.ToolStripMenuItem cmenu11;
+        private System.Windows.Forms.ToolStripMenuItem cmenu12;
+        private System.Windows.Forms.ToolStripMenuItem cmenu13;
+        private System.Windows.Forms.ToolStripMenuItem menu111;
     }
 }
 
