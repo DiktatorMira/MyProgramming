@@ -42,7 +42,7 @@ namespace Dz17._04._2023 {
             string[] files = Directory.GetFiles(path);
             string[] directories = Directory.GetDirectories(path);
             Icon icon = new Icon("folder.ico");
-            foreach (string dir in directories) fileList.Items.Add(dir, 0);
+            foreach (string dir in directories){ fileList.Items.Add(dir, 0);
             int index = 1;
             foreach (string file in files) {
                 icon = Icon.ExtractAssociatedIcon(file);
