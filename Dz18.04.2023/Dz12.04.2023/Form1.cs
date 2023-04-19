@@ -15,22 +15,64 @@ namespace Dz12._04._2023 {
     public partial class Form1 : Form {
         string path = "C:\\";
         ImageList image = new ImageList();
-        Thread main;
+        Thread main, thread = null;
+        private delegate void InWork(int a);
+        string firstPath = Directory.GetCurrentDirectory();
         public Form1() {
             InitializeComponent();
             Directory.SetCurrentDirectory(path);
             comboDisk.Items.Add(Directory.GetCurrentDirectory().ToString());
             image.ColorDepth = ColorDepth.Depth32Bit;
             image.ImageSize = new Size(16, 16);
-            Icon icon = new Icon("C:\\Users\\User\\Desktop\\Dz12.04.2023_1\\Dz12.04.2023\\bin\\Debug\\folder.ico");
+            Directory.SetCurrentDirectory(firstPath);
+            Icon icon = new Icon("folder.ico");
             image.Images.Add(icon);
+        }
+        private void ThreadWorks(object obj) {
+            try {
+                Action act1 = delegate
+                {
+                    fileList.Items.Clear();
+                    string[] files = Directory.GetFiles(path);
+                    string[] directories = Directory.GetDirectories(path);
+                    int count = 0;
+                    Icon icon = new Icon("folder.ico");
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        if (files[i].Contains("." + extension.Text)) count++;
+                    }
+                    label3.Visible = true;
+                    if (count == 0)
+                    {
+                        label3.Text = "Файлов с таким расширением нет.";
+                        MessageBox.Show("Файлов с таким расширением нет.", "Увы",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        label3.Text = $"Всего файлов этого типа:  {count}";
+                        foreach (string file in files)
+                        {
+                            icon = Icon.ExtractAssociatedIcon(file);
+                            image.Images.Add(icon);
+                            if (file.Contains("." + extension.Text)) fileList.Items.Add(file);
+                            foreach (string dir in directories)
+                            {
+                                if (file.Contains("." + extension.Text)) fileList.Items.Add(dir, 0);
+                            }
+                        }
+                    }
+                };
+                Invoke(act1);
+            }
+            catch (Exception ex) { }
         }
         public void ThreadSearch(object obj) {
             fileList.Items.Clear();
             string[] files = Directory.GetFiles(path);
             string[] directories = Directory.GetDirectories(path);
             int count = 0;
-            Icon icon = new Icon("C:\\Users\\User\\Desktop\\Dz12.04.2023_1\\Dz12.04.2023\\bin\\Debug\\folder.ico");
+            Icon icon = new Icon("folder.ico");
             for (int i = 0; i < files.Length; i++) {
                 if (files[i].Contains("." + extension.Text)) count++;
             }
@@ -59,7 +101,7 @@ namespace Dz12._04._2023 {
             }
             else {
                 stop.Enabled = true;
-                Thread thread = new Thread(new ParameterizedThreadStart(ThreadSearch));
+                Thread thread = new Thread(new ParameterizedThreadStart(ThreadWorks));
                 main = thread;
                 thread.IsBackground = true;
                 thread.Start();
