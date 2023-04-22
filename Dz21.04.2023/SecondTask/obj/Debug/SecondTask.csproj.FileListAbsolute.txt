@@ -1,0 +1,11 @@
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\bin\Debug\SecondTask.exe.config
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\bin\Debug\SecondTask.exe
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\bin\Debug\SecondTask.pdb
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\obj\Debug\SecondTask.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\obj\Debug\SecondTask.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\obj\Debug\SecondTask.Form1.resources
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\obj\Debug\SecondTask.Properties.Resources.resources
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\obj\Debug\SecondTask.csproj.GenerateResource.cache
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\obj\Debug\SecondTask.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\obj\Debug\SecondTask.exe
+C:\Users\User\Desktop\Dz21.04.2023\SecondTask\obj\Debug\SecondTask.pdb

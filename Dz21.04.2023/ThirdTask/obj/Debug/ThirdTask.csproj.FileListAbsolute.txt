@@ -1,0 +1,11 @@
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\bin\Debug\ThirdTask.exe.config
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\bin\Debug\ThirdTask.exe
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\bin\Debug\ThirdTask.pdb
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\obj\Debug\ThirdTask.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\obj\Debug\ThirdTask.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\obj\Debug\ThirdTask.Form1.resources
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\obj\Debug\ThirdTask.Properties.Resources.resources
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\obj\Debug\ThirdTask.csproj.GenerateResource.cache
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\obj\Debug\ThirdTask.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\obj\Debug\ThirdTask.exe
+C:\Users\User\Desktop\Dz21.04.2023\ThirdTask\obj\Debug\ThirdTask.pdb
