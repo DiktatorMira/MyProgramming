@@ -1,0 +1,11 @@
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\bin\Debug\Dz24.04.2023_1.exe.config
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\bin\Debug\Dz24.04.2023_1.exe
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\bin\Debug\Dz24.04.2023_1.pdb
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\obj\Debug\Dz24.04.2023_1.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\obj\Debug\Dz24.04.2023_1.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\obj\Debug\Dz24._04._2023_1.Form1.resources
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\obj\Debug\Dz24._04._2023_1.Properties.Resources.resources
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\obj\Debug\Dz24.04.2023_1.csproj.GenerateResource.cache
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\obj\Debug\Dz24.04.2023_1.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\obj\Debug\Dz24.04.2023_1.exe
+C:\Users\User\Desktop\Dz24.04.2023_1\Dz24.04.2023_1\obj\Debug\Dz24.04.2023_1.pdb
