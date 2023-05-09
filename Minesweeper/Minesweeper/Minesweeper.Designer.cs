@@ -31,16 +31,26 @@
             this.menu22 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu22_1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu22_2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu22_3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu22_4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu23 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu23_1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu23_2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu23_3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu23_4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMenu3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMenu4 = new System.Windows.Forms.ToolStripMenuItem();
             this.timerBox = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.musicCheck = new System.Windows.Forms.CheckBox();
+            this.smile = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.Font = new System.Drawing.Font("Finlandica SemiBold", 10F, System.Drawing.FontStyle.Bold);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -51,7 +61,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(448, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(541, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -66,7 +76,8 @@
             // 
             this.toolMenu2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu21,
-            this.menu22});
+            this.menu22,
+            this.menu23});
             this.toolMenu2.Name = "toolMenu2";
             this.toolMenu2.Size = new System.Drawing.Size(107, 27);
             this.toolMenu2.Text = "Настройки";
@@ -79,7 +90,7 @@
             this.menu21_2,
             this.menu21_3});
             this.menu21.Name = "menu21";
-            this.menu21.Size = new System.Drawing.Size(242, 28);
+            this.menu21.Size = new System.Drawing.Size(224, 28);
             this.menu21.Text = "Язык";
             this.menu21.Click += new System.EventHandler(this.menu_clicks);
             // 
@@ -87,52 +98,116 @@
             // 
             this.menu21_1.Enabled = false;
             this.menu21_1.Name = "menu21_1";
-            this.menu21_1.Size = new System.Drawing.Size(224, 28);
+            this.menu21_1.Size = new System.Drawing.Size(182, 28);
             this.menu21_1.Text = "Русский";
-            this.menu21_1.Click += new System.EventHandler(this.menu21_1_Click);
+            this.menu21_1.Click += new System.EventHandler(this.LanguageClick);
             // 
             // menu21_2
             // 
             this.menu21_2.Name = "menu21_2";
-            this.menu21_2.Size = new System.Drawing.Size(224, 28);
+            this.menu21_2.Size = new System.Drawing.Size(182, 28);
             this.menu21_2.Text = "УкраЇнська";
-            this.menu21_2.Click += new System.EventHandler(this.menu21_2_Click);
+            this.menu21_2.Click += new System.EventHandler(this.LanguageClick);
             // 
             // menu21_3
             // 
             this.menu21_3.Name = "menu21_3";
-            this.menu21_3.Size = new System.Drawing.Size(224, 28);
+            this.menu21_3.Size = new System.Drawing.Size(182, 28);
             this.menu21_3.Text = "English";
-            this.menu21_3.Click += new System.EventHandler(this.menu21_3_Click);
+            this.menu21_3.Click += new System.EventHandler(this.LanguageClick);
             // 
             // menu22
             // 
             this.menu22.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu22_1,
-            this.menu22_2});
+            this.menu22_2,
+            this.menu22_3,
+            this.menu22_4});
             this.menu22.Name = "menu22";
-            this.menu22.Size = new System.Drawing.Size(242, 28);
-            this.menu22.Text = "Стиль приложения";
+            this.menu22.Size = new System.Drawing.Size(224, 28);
+            this.menu22.Text = "Сложность";
+            this.menu22.ToolTipText = "Отвечает за % минных клеток";
             this.menu22.Click += new System.EventHandler(this.menu_clicks);
             // 
             // menu22_1
             // 
-            this.menu22_1.Enabled = false;
             this.menu22_1.Name = "menu22_1";
-            this.menu22_1.Size = new System.Drawing.Size(224, 28);
-            this.menu22_1.Text = "Классический";
+            this.menu22_1.Size = new System.Drawing.Size(213, 28);
+            this.menu22_1.Text = "Лёгкая";
+            this.menu22_1.ToolTipText = "10% минных клеток";
+            this.menu22_1.Click += new System.EventHandler(this.DifficultyClick);
             // 
             // menu22_2
             // 
+            this.menu22_2.Enabled = false;
             this.menu22_2.Name = "menu22_2";
-            this.menu22_2.Size = new System.Drawing.Size(224, 28);
-            this.menu22_2.Text = "Современный";
+            this.menu22_2.Size = new System.Drawing.Size(213, 28);
+            this.menu22_2.Text = "Средняя";
+            this.menu22_2.ToolTipText = "Отвечает за % минных клеток";
+            this.menu22_2.Click += new System.EventHandler(this.DifficultyClick);
+            // 
+            // menu22_3
+            // 
+            this.menu22_3.Name = "menu22_3";
+            this.menu22_3.Size = new System.Drawing.Size(213, 28);
+            this.menu22_3.Text = "Сложная";
+            this.menu22_3.ToolTipText = "Отвечает за % минных клеток";
+            this.menu22_3.Click += new System.EventHandler(this.DifficultyClick);
+            // 
+            // menu22_4
+            // 
+            this.menu22_4.Name = "menu22_4";
+            this.menu22_4.Size = new System.Drawing.Size(213, 28);
+            this.menu22_4.Text = "Экстремальная";
+            this.menu22_4.ToolTipText = "Отвечает за % минных клеток";
+            this.menu22_4.Click += new System.EventHandler(this.DifficultyClick);
+            // 
+            // menu23
+            // 
+            this.menu23.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu23_1,
+            this.menu23_2,
+            this.menu23_3,
+            this.menu23_4});
+            this.menu23.Name = "menu23";
+            this.menu23.Size = new System.Drawing.Size(224, 28);
+            this.menu23.Text = "Размер поля";
+            // 
+            // menu23_1
+            // 
+            this.menu23_1.Name = "menu23_1";
+            this.menu23_1.Size = new System.Drawing.Size(140, 28);
+            this.menu23_1.Text = "5х5";
+            this.menu23_1.Click += new System.EventHandler(this.FieldClick);
+            // 
+            // menu23_2
+            // 
+            this.menu23_2.Enabled = false;
+            this.menu23_2.Name = "menu23_2";
+            this.menu23_2.Size = new System.Drawing.Size(140, 28);
+            this.menu23_2.Text = "10х10";
+            this.menu23_2.Click += new System.EventHandler(this.FieldClick);
+            // 
+            // menu23_3
+            // 
+            this.menu23_3.Name = "menu23_3";
+            this.menu23_3.Size = new System.Drawing.Size(140, 28);
+            this.menu23_3.Text = "14х14";
+            this.menu23_3.Click += new System.EventHandler(this.FieldClick);
+            // 
+            // menu23_4
+            // 
+            this.menu23_4.Name = "menu23_4";
+            this.menu23_4.Size = new System.Drawing.Size(140, 28);
+            this.menu23_4.Text = "30x14";
+            this.menu23_4.Click += new System.EventHandler(this.FieldClick);
             // 
             // toolMenu3
             // 
             this.toolMenu3.Name = "toolMenu3";
-            this.toolMenu3.Size = new System.Drawing.Size(137, 27);
-            this.toolMenu3.Text = "О приложении";
+            this.toolMenu3.Size = new System.Drawing.Size(138, 27);
+            this.toolMenu3.Text = "Начать заново";
+            this.toolMenu3.Click += new System.EventHandler(this.toolMenu3_Click);
             // 
             // toolMenu4
             // 
@@ -144,12 +219,12 @@
             // timerBox
             // 
             this.timerBox.Font = new System.Drawing.Font("KardinalPro ExtraBold", 14F, System.Drawing.FontStyle.Bold);
-            this.timerBox.Location = new System.Drawing.Point(217, 34);
+            this.timerBox.Location = new System.Drawing.Point(399, 35);
             this.timerBox.Name = "timerBox";
             this.timerBox.ReadOnly = true;
             this.timerBox.Size = new System.Drawing.Size(100, 35);
             this.timerBox.TabIndex = 1;
-            this.timerBox.Text = "03:00";
+            this.timerBox.Text = "00:00";
             this.timerBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // timer1
@@ -161,7 +236,7 @@
             // 
             this.musicCheck.AutoSize = true;
             this.musicCheck.Font = new System.Drawing.Font("KardinalPro ExtraBold", 10F, System.Drawing.FontStyle.Bold);
-            this.musicCheck.Location = new System.Drawing.Point(23, 35);
+            this.musicCheck.Location = new System.Drawing.Point(23, 56);
             this.musicCheck.Name = "musicCheck";
             this.musicCheck.Size = new System.Drawing.Size(90, 25);
             this.musicCheck.TabIndex = 2;
@@ -169,19 +244,33 @@
             this.musicCheck.UseVisualStyleBackColor = true;
             this.musicCheck.CheckedChanged += new System.EventHandler(this.musicCheck_CheckedChanged);
             // 
-            // Form1
+            // smile
+            // 
+            this.smile.Location = new System.Drawing.Point(215, 57);
+            this.smile.Name = "smile";
+            this.smile.Size = new System.Drawing.Size(48, 48);
+            this.smile.TabIndex = 3;
+            this.smile.UseVisualStyleBackColor = true;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 1000;
+            // 
+            // Minesweeper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(448, 583);
+            this.ClientSize = new System.Drawing.Size(541, 583);
+            this.Controls.Add(this.smile);
             this.Controls.Add(this.musicCheck);
             this.Controls.Add(this.timerBox);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("KardinalPro ExtraBold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Minesweeper";
             this.Text = "Сапёр v2.0 ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Minesweeper_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -205,6 +294,15 @@
         private System.Windows.Forms.TextBox timerBox;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox musicCheck;
+        private System.Windows.Forms.ToolStripMenuItem menu22_3;
+        private System.Windows.Forms.ToolStripMenuItem menu23;
+        private System.Windows.Forms.ToolStripMenuItem menu23_1;
+        private System.Windows.Forms.ToolStripMenuItem menu23_2;
+        private System.Windows.Forms.ToolStripMenuItem menu23_3;
+        private System.Windows.Forms.ToolStripMenuItem menu23_4;
+        private System.Windows.Forms.Button smile;
+        private System.Windows.Forms.ToolStripMenuItem menu22_4;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

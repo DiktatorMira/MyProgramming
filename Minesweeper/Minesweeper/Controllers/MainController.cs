@@ -4,141 +4,302 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Minesweeper.Controllers {
+    public class MyButton : Button {
+        public bool IsBomb { get; set; }
+        public bool IsActive { get; set; } = false;
+        public bool IsFlagCheck { get; set; } = false;
+        public bool IsOpened { get; set; } = false;
+        public int CurrentPircture { get; set; } = 0;
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
     public static class MainController {
-        public static int map_size = 10, cell_size = 48;
-        public static int[,] map = new int[map_size, map_size];
-        public static bool IsFirstStep;
-        private static int curPicture;
-
-        public static Button[,] buttons = new Button[map_size, map_size];
-        private static Image images;
-        private static Point firstCord;
-
-        public static AudioFileReader musicRead = new AudioFileReader("sounds/music.wav");
-        public static AudioFileReader playRead = new AudioFileReader("sounds/start.wav");
-        public static AudioFileReader btnClickRead = new AudioFileReader("sounds/click.wav");
-        public static WaveOut music = new WaveOut();
-        public static WaveOut play = new WaveOut();
-        public static WaveOut btnClick = new WaveOut();
+        public static int height, width, cell_size = 48, bombs_count = 0, flag_bombs = 0;
+        public static double bomb_persent;
+        public static bool IsFirstStep = true;
+        public static MyButton[,] buttons;
+        public static Form form;
+        public static Minesweeper form1;
         public static void Init(Form current) {
-            IsFirstStep = true;
-            curPicture = 0;
-            images = Image.FromFile("textures/button.png");
-            ConfigMapSize(current);
-            InitMap();
+            form = current;
+            form1 = (Minesweeper)current;
+            ChangeField();
+            buttons = new MyButton[height, width];
+            InitMap(current);
             InitButtons(current);
-            InitAudio();
         }
-        private static void InitAudio() {
-            music.Init(musicRead);
-            play.Init(playRead);
-            btnClick.Init(btnClickRead);
-        }
-        private static void ConfigMapSize(Form current) {
-            current.Width = (map_size * cell_size) + 50;
-            current.Height = (map_size * cell_size) + 150;
-        }
-        private static void InitMap() {
-            for (int i = 0; i < map_size; i++) {
-                for (int j = 0; j < map_size; j++) map[i, j] = 0;
+        private static void ChangeField() {
+            switch (form1.size) {
+                case "5x5":
+                    height = 5;
+                    width = 5;
+                    break;
+                case "10x10":
+                    height = 10;
+                    width = 10;
+                    break;
+                case "14x14":
+                    height = 14;
+                    width = 14;
+                    break;
+                case "30x14":
+                    height = 14;
+                    width = 30;
+                    break;
             }
         }
+        private static void InitMap(Form current) {
+            current.Width = (width * cell_size) + 50;
+            current.Height = (height * cell_size) + 150;
+        }
         private static void InitButtons(Form current) {
-            for (int i = 0; i < map_size; i++) {
-                for (int j = 0; j < map_size; j++) {
-                    Button button = new Button();
-                    button.Location = new Point((j * cell_size) + 18, (i * cell_size) + 70);
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    MyButton button = new MyButton();
+                    button.Location = new Point((j * cell_size) + 18, (i * cell_size) + 90);
                     button.Size = new Size(cell_size, cell_size);
                     button.MouseUp += new MouseEventHandler(MouseButtonPressed);
                     button.FlatAppearance.BorderSize = 0;
                     button.FlatStyle = FlatStyle.Flat;
-                    button.Image = Image.FromFile("textures/button.png");
+                    button.BackgroundImage = Image.FromFile("textures/button.png");
                     current.Controls.Add(button);
+                    button.Y = i;
+                    button.X = j;
                     buttons[i, j] = button;
-                    buttons[i, j].Enabled = false;
                 }
             }
         }
         private static void MouseButtonPressed(object sender, MouseEventArgs e) {
-            Button pressButton = (Button)sender;
+            MyButton button = (MyButton)sender;
             switch (e.Button) {
                 case MouseButtons.Right:
-                    RightButtonPressed(pressButton);
+                    RightButtonPressed(button);
                     break;
                 case MouseButtons.Left:
-                    LeftButtonPressed(pressButton);
+                    LeftButtonPressed(button);
                     break;
             }
         }
-        private static void RightButtonPressed(Button presButt) {
-            btnClick.Stop();
-            btnClickRead = new AudioFileReader("sounds/flag.wav");
-            btnClick.Init(btnClickRead);
-            btnClick.Play();
-            curPicture++;
-            curPicture %= 3;
-            switch(curPicture) {
-                case 0:
-                    presButt.Image = Image.FromFile("textures/button.png");
-                    break;
-                case 1:
-                    presButt.Image = Image.FromFile("textures/flag.png");
-                    break;
-                case 2:
-                    presButt.Image = Image.FromFile("textures/question.png");
-                    break;
-            }
-        }
-        private static void LeftButtonPressed(Button presButt) {
-            btnClick.Stop();
-            btnClickRead = new AudioFileReader("sounds/fieldclick.wav");
-            btnClick.Init(btnClickRead);
-            btnClick.Play();
-            presButt.Enabled = false;
-            presButt.Image = Image.FromFile("textures/empty.png");
-            int xBut = presButt.Location.X / cell_size, yBut = presButt.Location.Y / cell_size;
-            if (IsFirstStep) {
-                firstCord = new Point(xBut, yBut);
-                SeedMap();
-                CountBombs();
-                IsFirstStep = false;
-            }
-        }
-        private static void SeedMap() {
-            Random rand = new Random();
-            int num = rand.Next(5, 10);
-            for(int i = 0; i < num; i++) {
-                int x = rand.Next(0, map_size - 1);
-                int y = rand.Next(0, map_size - 1);
-                while (map[x, y] == -1 || (Math.Abs(x-firstCord.Y) <= 1 && Math.Abs(y-firstCord.X) <= 1)) {
-                    x = rand.Next(0, map_size - 1);
-                    y = rand.Next(0, map_size - 1);
+        private static void RightButtonPressed(MyButton button) {
+            if (button.IsActive && !IsFirstStep) {
+                Database.btnClick.Stop();
+                Database.btnClickRead = new AudioFileReader("sounds/flag.wav");
+                Database.btnClick.Init(Database.btnClickRead);
+                Database.btnClick.Play();
+                switch (button.CurrentPircture) {
+                    case 0:
+                        button.BackgroundImage = Image.FromFile("textures/flag.png");
+                        button.CurrentPircture++;
+                        button.IsFlagCheck = true;
+                        if(button.IsBomb) flag_bombs++;
+                        break;
+                    case 1:
+                        button.BackgroundImage = Image.FromFile("textures/question.png");
+                        button.CurrentPircture++;
+                        if (button.IsBomb) flag_bombs--;
+                        break;
+                    case 2:
+                        button.BackgroundImage = Image.FromFile("textures/button.png");
+                        button.CurrentPircture = 0;
+                        button.IsFlagCheck = false;
+                        break;
                 }
-                map[x, y] = -1;
+                if (flag_bombs == bombs_count) Victory();
             }
         }
-        private static void CountBombs() {
-            for(int i = 0; i < map_size; i++) {
-                for(int j = 0; j < map_size; j++) {
-                    if (map[i, j] == -1) {
-                        for(int k = i - 1; k < i + 2; k++) {
-                            for(int l = j - 1; l < j + 2; l++) {
-                                if (!IsInBorder(k, l) || map[k, l] == -1) continue;
-                                map[k, l] += 1;
+        private static void LeftButtonPressed(MyButton button) {
+            if (button.IsActive && !button.IsFlagCheck) {
+                Database.btnClick.Stop();
+                Database.btnClickRead = new AudioFileReader("sounds/fieldclick.wav");
+                Database.btnClick.Init(Database.btnClickRead);
+                Database.btnClick.Play();
+                if (IsFirstStep) {
+                    IsFirstStep = false;
+                    GenerateField(button);
+                }
+                button.IsActive = false;
+                if (button.IsBomb) Explosion(button);
+                else OpenRegion(button);
+            }
+        }
+        private static void GenerateField(MyButton button) {
+            Random rand = new Random();
+            //int point = (int)(buttons.Length * bombs_count * 0.01);
+            foreach (var but in buttons) {
+                if (rand.Next(0, 101) < bomb_persent && but != button) {
+                    but.IsBomb = true;
+                    bombs_count++;
+                }
+                else but.IsBomb = false;
+            }
+        }
+        private static void Explosion(MyButton button) {
+            Database.music.Stop();
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (buttons[i, j].IsBomb) {
+                        if (buttons[i, j].IsFlagCheck) buttons[i, j].Image = Image.FromFile("textures/flag.png");
+                        else buttons[i, j].Image = Image.FromFile("textures/bomb.png");
+                        buttons[i, j].IsActive = false;
+                    }
+                    else if (!buttons[i, j].IsBomb && buttons[i, j].IsFlagCheck)
+                        buttons[i, j].Image = Image.FromFile("textures/incflag.png");
+                }
+            }
+            button.Image = Image.FromFile("textures/clickbomb.png");
+            form1.SetSmile(Image.FromFile("textures/smile1.png"));
+            form1.StopTimer();
+            Database.btnClick.Stop();
+            Database.btnClickRead = new AudioFileReader("sounds/bomb.wav");
+            Database.btnClick.Init(Database.btnClickRead);
+            Database.btnClick.Play();
+            if(form1.language == "russian") {
+                DialogResult res = MessageBox.Show("Вы проиграли! Хотите начать заново?",
+                "Эх...", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                Database.btnClick.Stop();
+                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
+                Database.btnClick.Init(Database.btnClickRead);
+                Database.btnClick.Play();
+                if (res == DialogResult.Yes) Application.Restart();
+                else form1.Close();
+            }
+            else if(form1.language == "ukrainian") {
+                DialogResult res = MessageBox.Show("Ви програли! Бажаєте почати заново?",
+               "Ех...", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                Database.btnClick.Stop();
+                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
+                Database.btnClick.Init(Database.btnClickRead);
+                Database.btnClick.Play();
+                if (res == DialogResult.Yes) Application.Restart();
+                else form1.Close();
+            }
+            else if(form1.language == "english") {
+                DialogResult res = MessageBox.Show("You lose! Wanna start over?",
+               "Eh...", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                Database.btnClick.Stop();
+                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
+                Database.btnClick.Init(Database.btnClickRead);
+                Database.btnClick.Play();
+                if (res == DialogResult.Yes) Application.Restart();
+                else form1.Close();
+            }
+        }
+        private static void Victory() {
+            Database.btnClick.Stop();
+            Database.btnClickRead = new AudioFileReader("sounds/victory.wav");
+            Database.btnClick.Init(Database.btnClickRead);
+            Database.btnClick.Play();
+            Database.music.Stop();
+            form1.StopTimer();
+            form1.SetSmile(Image.FromFile("textures/smile2.png"));
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+                    MakeImage(buttons[i, j], CountBombs(i, j));
+                    if (buttons[i, j].IsBomb) buttons[i, j].Image = Image.FromFile("textures/flag.png");
+                    buttons[i, j].IsActive = false;
+                }
+            }
+            if (form1.language == "russian") {
+                DialogResult res = MessageBox.Show($"Вы выиграли! Ваше время: {form1.GetTime()}. Хотите начать заново?",
+                "Поздравляем!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                Database.btnClick.Stop();
+                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
+                Database.btnClick.Init(Database.btnClickRead);
+                Database.btnClick.Play();
+                if (res == DialogResult.Yes) Application.Restart();
+                else form1.Close();
+            }
+            else if(form1.language == "ukrainian") {
+                DialogResult res = MessageBox.Show($"Ви виграли! Ваш час: {form1.GetTime()}. Бажаєте почати заново?",
+                "Поздравляем!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                Database.btnClick.Stop();
+                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
+                Database.btnClick.Init(Database.btnClickRead);
+                Database.btnClick.Play();
+                if (res == DialogResult.Yes) Application.Restart();
+                else form1.Close();
+            }
+            else if (form1.language == "english") {
+                DialogResult res = MessageBox.Show($"You have won! Your time: {form1.GetTime()}. Wanna start over?",
+                "Поздравляем!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                Database.btnClick.Stop();
+                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
+                Database.btnClick.Init(Database.btnClickRead);
+                Database.btnClick.Play();
+                if (res == DialogResult.Yes) Application.Restart();
+                else form1.Close();
+            }
+        }
+        private static void OpenRegion(MyButton button) {
+            Queue<MyButton> queue = new Queue<MyButton>();
+            queue.Enqueue(button);
+            while(queue.Count > 0) {
+                MyButton curBut = queue.Dequeue();
+                if (!curBut.IsFlagCheck) OpenCell(curBut);
+                if (CountBombs(curBut.Y, curBut.X) == 0) {
+                    for (int y = curBut.X - 1; y <= curBut.X + 1; y++) {
+                        for (int x = curBut.Y - 1; x <= curBut.Y + 1; x++) {
+                            if (x >= 0 && y >= 0 && x < height && y < width) {
+                                if (!buttons[x, y].IsOpened) {
+                                    queue.Enqueue(buttons[x, y]);
+                                    buttons[x, y].IsOpened = true;
+                                }
                             }
                         }
                     }
                 }
             }
         }
-        private static bool IsInBorder(int x, int y) {
-            if (x < 0 || y < 0 || y > map_size - 1 || x > map_size - 1) return false;
-            return true;
+        private static void OpenCell(MyButton button) {
+            MakeImage(button, CountBombs(button.Y, button.X));
+            button.IsActive = false;
+        }
+        private static int CountBombs(int xBut, int yBut) {
+            int count_bombs = 0;
+            for (int x = xBut - 1; x <= xBut + 1; x++) {
+                for (int y = yBut - 1; y <= yBut + 1; y++) {
+                    if (x >= 0 && x < height && y >= 0 && y < width) if (buttons[x, y].IsBomb) count_bombs++;
+                }
+            }
+            return count_bombs;
+        }
+        private static void MakeImage(MyButton button, int value) {
+            switch (value) {
+                case 0:
+                    button.Image = Image.FromFile("textures/empty.png");
+                    break;
+                case 1:
+                    button.Image = Image.FromFile("textures/one.png");
+                    break;
+                case 2:
+                    button.Image = Image.FromFile("textures/two.png");
+                    break;
+                case 3:
+                    button.Image = Image.FromFile("textures/three.png");
+                    break;
+                case 4:
+                    button.Image = Image.FromFile("textures/four.png");
+                    break;
+                case 5:
+                    button.Image = Image.FromFile("textures/five.png");
+                    break;
+                case 6:
+                    button.Image = Image.FromFile("textures/six.png");
+                    break;
+                case 7:
+                    button.Image = Image.FromFile("textures/seven.png");
+                    break;
+                case 8:
+                    button.Image = Image.FromFile("textures/eight.png");
+                    break;
+            }
         }
     }
 }
