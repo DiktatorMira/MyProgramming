@@ -1,4 +1,6 @@
 russian
 music off
 easy
-30x14
+5x5
+black
+no

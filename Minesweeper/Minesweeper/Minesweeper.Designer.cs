@@ -38,6 +38,14 @@
             this.menu23_2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu23_3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu23_4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu23_5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu23_6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu24 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu24_1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu24_2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu25 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu25_1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu25_2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMenu3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMenu4 = new System.Windows.Forms.ToolStripMenuItem();
             this.timerBox = new System.Windows.Forms.TextBox();
@@ -77,11 +85,15 @@
             this.toolMenu2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu21,
             this.menu22,
-            this.menu23});
+            this.menu23,
+            this.menu24,
+            this.menu25});
             this.toolMenu2.Name = "toolMenu2";
             this.toolMenu2.Size = new System.Drawing.Size(107, 27);
             this.toolMenu2.Text = "Настройки";
-            this.toolMenu2.Click += new System.EventHandler(this.menu_clicks);
+            this.toolMenu2.Click += new System.EventHandler(this.MenuClicks);
+            this.toolMenu2.MouseEnter += new System.EventHandler(this.toolMenu2_MouseEnter);
+            this.toolMenu2.MouseLeave += new System.EventHandler(this.toolMenu2_MouseLeave);
             // 
             // menu21
             // 
@@ -90,9 +102,9 @@
             this.menu21_2,
             this.menu21_3});
             this.menu21.Name = "menu21";
-            this.menu21.Size = new System.Drawing.Size(224, 28);
+            this.menu21.Size = new System.Drawing.Size(240, 28);
             this.menu21.Text = "Язык";
-            this.menu21.Click += new System.EventHandler(this.menu_clicks);
+            this.menu21.Click += new System.EventHandler(this.MenuClicks);
             // 
             // menu21_1
             // 
@@ -124,10 +136,10 @@
             this.menu22_3,
             this.menu22_4});
             this.menu22.Name = "menu22";
-            this.menu22.Size = new System.Drawing.Size(224, 28);
+            this.menu22.Size = new System.Drawing.Size(240, 28);
             this.menu22.Text = "Сложность";
             this.menu22.ToolTipText = "Отвечает за % минных клеток";
-            this.menu22.Click += new System.EventHandler(this.menu_clicks);
+            this.menu22.Click += new System.EventHandler(this.MenuClicks);
             // 
             // menu22_1
             // 
@@ -168,9 +180,11 @@
             this.menu23_1,
             this.menu23_2,
             this.menu23_3,
-            this.menu23_4});
+            this.menu23_4,
+            this.menu23_5,
+            this.menu23_6});
             this.menu23.Name = "menu23";
-            this.menu23.Size = new System.Drawing.Size(224, 28);
+            this.menu23.Size = new System.Drawing.Size(240, 28);
             this.menu23.Text = "Размер поля";
             // 
             // menu23_1
@@ -182,25 +196,89 @@
             // 
             // menu23_2
             // 
-            this.menu23_2.Enabled = false;
             this.menu23_2.Name = "menu23_2";
             this.menu23_2.Size = new System.Drawing.Size(140, 28);
-            this.menu23_2.Text = "10х10";
+            this.menu23_2.Text = "10x5";
             this.menu23_2.Click += new System.EventHandler(this.FieldClick);
             // 
             // menu23_3
             // 
+            this.menu23_3.Enabled = false;
             this.menu23_3.Name = "menu23_3";
             this.menu23_3.Size = new System.Drawing.Size(140, 28);
-            this.menu23_3.Text = "14х14";
+            this.menu23_3.Text = "10х10";
             this.menu23_3.Click += new System.EventHandler(this.FieldClick);
             // 
             // menu23_4
             // 
             this.menu23_4.Name = "menu23_4";
             this.menu23_4.Size = new System.Drawing.Size(140, 28);
-            this.menu23_4.Text = "30x14";
+            this.menu23_4.Text = "14x10";
             this.menu23_4.Click += new System.EventHandler(this.FieldClick);
+            // 
+            // menu23_5
+            // 
+            this.menu23_5.Name = "menu23_5";
+            this.menu23_5.Size = new System.Drawing.Size(140, 28);
+            this.menu23_5.Text = "14х14";
+            this.menu23_5.Click += new System.EventHandler(this.FieldClick);
+            // 
+            // menu23_6
+            // 
+            this.menu23_6.Name = "menu23_6";
+            this.menu23_6.Size = new System.Drawing.Size(140, 28);
+            this.menu23_6.Text = "30x14";
+            this.menu23_6.Click += new System.EventHandler(this.FieldClick);
+            // 
+            // menu24
+            // 
+            this.menu24.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu24_1,
+            this.menu24_2});
+            this.menu24.Name = "menu24";
+            this.menu24.Size = new System.Drawing.Size(240, 28);
+            this.menu24.Text = "Темы оформления";
+            this.menu24.Click += new System.EventHandler(this.MenuClicks);
+            // 
+            // menu24_1
+            // 
+            this.menu24_1.Enabled = false;
+            this.menu24_1.Name = "menu24_1";
+            this.menu24_1.Size = new System.Drawing.Size(157, 28);
+            this.menu24_1.Text = "Светлая";
+            this.menu24_1.Click += new System.EventHandler(this.ColorClick);
+            // 
+            // menu24_2
+            // 
+            this.menu24_2.Name = "menu24_2";
+            this.menu24_2.Size = new System.Drawing.Size(157, 28);
+            this.menu24_2.Text = "Тёмная";
+            this.menu24_2.Click += new System.EventHandler(this.ColorClick);
+            // 
+            // menu25
+            // 
+            this.menu25.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu25_1,
+            this.menu25_2});
+            this.menu25.Name = "menu25";
+            this.menu25.Size = new System.Drawing.Size(240, 28);
+            this.menu25.Text = "Обои";
+            this.menu25.Click += new System.EventHandler(this.MenuClicks);
+            // 
+            // menu25_1
+            // 
+            this.menu25_1.Enabled = false;
+            this.menu25_1.Name = "menu25_1";
+            this.menu25_1.Size = new System.Drawing.Size(224, 28);
+            this.menu25_1.Text = "Выкл";
+            this.menu25_1.Click += new System.EventHandler(this.WallpaperClick);
+            // 
+            // menu25_2
+            // 
+            this.menu25_2.Name = "menu25_2";
+            this.menu25_2.Size = new System.Drawing.Size(224, 28);
+            this.menu25_2.Text = "Вкл";
+            this.menu25_2.Click += new System.EventHandler(this.WallpaperClick);
             // 
             // toolMenu3
             // 
@@ -297,12 +375,20 @@
         private System.Windows.Forms.ToolStripMenuItem menu22_3;
         private System.Windows.Forms.ToolStripMenuItem menu23;
         private System.Windows.Forms.ToolStripMenuItem menu23_1;
-        private System.Windows.Forms.ToolStripMenuItem menu23_2;
         private System.Windows.Forms.ToolStripMenuItem menu23_3;
-        private System.Windows.Forms.ToolStripMenuItem menu23_4;
+        private System.Windows.Forms.ToolStripMenuItem menu23_5;
+        private System.Windows.Forms.ToolStripMenuItem menu23_6;
         private System.Windows.Forms.Button smile;
         private System.Windows.Forms.ToolStripMenuItem menu22_4;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolStripMenuItem menu23_2;
+        private System.Windows.Forms.ToolStripMenuItem menu23_4;
+        private System.Windows.Forms.ToolStripMenuItem menu24;
+        private System.Windows.Forms.ToolStripMenuItem menu24_1;
+        private System.Windows.Forms.ToolStripMenuItem menu24_2;
+        private System.Windows.Forms.ToolStripMenuItem menu25;
+        private System.Windows.Forms.ToolStripMenuItem menu25_1;
+        private System.Windows.Forms.ToolStripMenuItem menu25_2;
     }
 }
 

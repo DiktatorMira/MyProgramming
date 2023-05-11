@@ -16,6 +16,7 @@ namespace Minesweeper.Controllers {
         public bool IsActive { get; set; } = false;
         public bool IsFlagCheck { get; set; } = false;
         public bool IsOpened { get; set; } = false;
+        public bool IsEmpty { get; set; } = false;
         public int CurrentPircture { get; set; } = 0;
         public int X { get; set; }
         public int Y { get; set; }
@@ -41,9 +42,17 @@ namespace Minesweeper.Controllers {
                     height = 5;
                     width = 5;
                     break;
+                case "10x5":
+                    height = 5;
+                    width = 10;
+                    break;
                 case "10x10":
                     height = 10;
                     width = 10;
+                    break;
+                case "14x10":
+                    height = 10;
+                    width = 14;
                     break;
                 case "14x14":
                     height = 14;
@@ -68,7 +77,7 @@ namespace Minesweeper.Controllers {
                     button.MouseUp += new MouseEventHandler(MouseButtonPressed);
                     button.FlatAppearance.BorderSize = 0;
                     button.FlatStyle = FlatStyle.Flat;
-                    button.BackgroundImage = Image.FromFile("textures/button.png");
+                    button.BackgroundImage = Image.FromFile("textures/light/button.png");
                     current.Controls.Add(button);
                     button.Y = i;
                     button.X = j;
@@ -89,24 +98,21 @@ namespace Minesweeper.Controllers {
         }
         private static void RightButtonPressed(MyButton button) {
             if (button.IsActive && !IsFirstStep) {
-                Database.btnClick.Stop();
-                Database.btnClickRead = new AudioFileReader("sounds/flag.wav");
-                Database.btnClick.Init(Database.btnClickRead);
-                Database.btnClick.Play();
+                Database.ChangeSound("sounds/flag.wav");
                 switch (button.CurrentPircture) {
                     case 0:
-                        button.BackgroundImage = Image.FromFile("textures/flag.png");
+                        button.BackgroundImage = Image.FromFile("textures/light/flag.png");
                         button.CurrentPircture++;
                         button.IsFlagCheck = true;
                         if(button.IsBomb) flag_bombs++;
                         break;
                     case 1:
-                        button.BackgroundImage = Image.FromFile("textures/question.png");
+                        button.BackgroundImage = Image.FromFile("textures/light/question.png");
                         button.CurrentPircture++;
                         if (button.IsBomb) flag_bombs--;
                         break;
                     case 2:
-                        button.BackgroundImage = Image.FromFile("textures/button.png");
+                        button.BackgroundImage = Image.FromFile("textures/light/button.png");
                         button.CurrentPircture = 0;
                         button.IsFlagCheck = false;
                         break;
@@ -116,10 +122,7 @@ namespace Minesweeper.Controllers {
         }
         private static void LeftButtonPressed(MyButton button) {
             if (button.IsActive && !button.IsFlagCheck) {
-                Database.btnClick.Stop();
-                Database.btnClickRead = new AudioFileReader("sounds/fieldclick.wav");
-                Database.btnClick.Init(Database.btnClickRead);
-                Database.btnClick.Play();
+                Database.ChangeSound("sounds/fieldclick.wav");
                 if (IsFirstStep) {
                     IsFirstStep = false;
                     GenerateField(button);
@@ -131,13 +134,21 @@ namespace Minesweeper.Controllers {
         }
         private static void GenerateField(MyButton button) {
             Random rand = new Random();
-            //int point = (int)(buttons.Length * bombs_count * 0.01);
-            foreach (var but in buttons) {
-                if (rand.Next(0, 101) < bomb_persent && but != button) {
-                    but.IsBomb = true;
-                    bombs_count++;
+            bombs_count = (int)Math.Round(height * width * bomb_persent * 0.01);
+            button.IsEmpty = true;
+            for (int x = button.Y - 1; x <= button.Y + 1; x++) {
+                for (int y = button.X - 1; y <= button.X + 1; y++) {
+                    if (x >= 0 && x < height && y >= 0 && y < width) buttons[x,y].IsEmpty = true;
                 }
-                else but.IsBomb = false;
+            }
+            int quan = 0, i, j;
+            while (quan != bombs_count) {
+                i = rand.Next(0, height);
+                j = rand.Next(0, width);
+                if (!buttons[i, j].IsBomb && !buttons[i, j].IsEmpty) {
+                    buttons[i,j].IsBomb = true;
+                    quan++;
+                }
             }
         }
         private static void Explosion(MyButton button) {
@@ -145,94 +156,68 @@ namespace Minesweeper.Controllers {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
                     if (buttons[i, j].IsBomb) {
-                        if (buttons[i, j].IsFlagCheck) buttons[i, j].Image = Image.FromFile("textures/flag.png");
-                        else buttons[i, j].Image = Image.FromFile("textures/bomb.png");
+                        if (buttons[i, j].IsFlagCheck) buttons[i, j].Image = Image.FromFile("textures/light/flag.png");
+                        else buttons[i, j].Image = Image.FromFile("textures/light/bomb.png");
                         buttons[i, j].IsActive = false;
                     }
-                    else if (!buttons[i, j].IsBomb && buttons[i, j].IsFlagCheck)
-                        buttons[i, j].Image = Image.FromFile("textures/incflag.png");
+                    else if (!buttons[i, j].IsBomb && buttons[i, j].IsFlagCheck) buttons[i, j].Image = Image.FromFile("textures/light/incflag.png");
                 }
             }
-            button.Image = Image.FromFile("textures/clickbomb.png");
-            form1.SetSmile(Image.FromFile("textures/smile1.png"));
+            button.Image = Image.FromFile("textures/light/clickbomb.png");
+            form1.SetSmile(Image.FromFile("textures/light/smile1.png"));
             form1.StopTimer();
-            Database.btnClick.Stop();
-            Database.btnClickRead = new AudioFileReader("sounds/bomb.wav");
-            Database.btnClick.Init(Database.btnClickRead);
-            Database.btnClick.Play();
+            Database.ChangeSound("sounds/bomb.wav");
             if(form1.language == "russian") {
                 DialogResult res = MessageBox.Show("Вы проиграли! Хотите начать заново?",
-                "Эх...", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-                Database.btnClick.Stop();
-                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
-                Database.btnClick.Init(Database.btnClickRead);
-                Database.btnClick.Play();
+                "Смэрть", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                Database.ChangeSound("sounds/click.wav");
                 if (res == DialogResult.Yes) Application.Restart();
                 else form1.Close();
             }
             else if(form1.language == "ukrainian") {
                 DialogResult res = MessageBox.Show("Ви програли! Бажаєте почати заново?",
-               "Ех...", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-                Database.btnClick.Stop();
-                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
-                Database.btnClick.Init(Database.btnClickRead);
-                Database.btnClick.Play();
+               "Помер", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                Database.ChangeSound("sounds/click.wav");
                 if (res == DialogResult.Yes) Application.Restart();
                 else form1.Close();
             }
             else if(form1.language == "english") {
                 DialogResult res = MessageBox.Show("You lose! Wanna start over?",
                "Eh...", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-                Database.btnClick.Stop();
-                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
-                Database.btnClick.Init(Database.btnClickRead);
-                Database.btnClick.Play();
+                Database.ChangeSound("sounds/click.wav");
                 if (res == DialogResult.Yes) Application.Restart();
                 else form1.Close();
             }
         }
         private static void Victory() {
-            Database.btnClick.Stop();
-            Database.btnClickRead = new AudioFileReader("sounds/victory.wav");
-            Database.btnClick.Init(Database.btnClickRead);
-            Database.btnClick.Play();
-            Database.music.Stop();
+            Database.ChangeSound("sounds/victory.wav");
             form1.StopTimer();
-            form1.SetSmile(Image.FromFile("textures/smile2.png"));
-            for (int i = 0; i < width; i++) {
-                for (int j = 0; j < height; j++) {
+            form1.SetSmile(Image.FromFile("textures/light/smile2.png"));
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
                     MakeImage(buttons[i, j], CountBombs(i, j));
-                    if (buttons[i, j].IsBomb) buttons[i, j].Image = Image.FromFile("textures/flag.png");
+                    if (buttons[i, j].IsBomb) buttons[i, j].Image = Image.FromFile("textures/light/flag.png");
                     buttons[i, j].IsActive = false;
                 }
             }
             if (form1.language == "russian") {
                 DialogResult res = MessageBox.Show($"Вы выиграли! Ваше время: {form1.GetTime()}. Хотите начать заново?",
                 "Поздравляем!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                Database.btnClick.Stop();
-                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
-                Database.btnClick.Init(Database.btnClickRead);
-                Database.btnClick.Play();
+                Database.ChangeSound("sounds/click.wav");
                 if (res == DialogResult.Yes) Application.Restart();
                 else form1.Close();
             }
             else if(form1.language == "ukrainian") {
                 DialogResult res = MessageBox.Show($"Ви виграли! Ваш час: {form1.GetTime()}. Бажаєте почати заново?",
-                "Поздравляем!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                Database.btnClick.Stop();
-                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
-                Database.btnClick.Init(Database.btnClickRead);
-                Database.btnClick.Play();
+                "Вітаємо!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                Database.ChangeSound("sounds/click.wav");
                 if (res == DialogResult.Yes) Application.Restart();
                 else form1.Close();
             }
             else if (form1.language == "english") {
                 DialogResult res = MessageBox.Show($"You have won! Your time: {form1.GetTime()}. Wanna start over?",
-                "Поздравляем!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                Database.btnClick.Stop();
-                Database.btnClickRead = new AudioFileReader("sounds/click.wav");
-                Database.btnClick.Init(Database.btnClickRead);
-                Database.btnClick.Play();
+                "Congratulations!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                Database.ChangeSound("sounds/click.wav");
                 if (res == DialogResult.Yes) Application.Restart();
                 else form1.Close();
             }
@@ -242,7 +227,10 @@ namespace Minesweeper.Controllers {
             queue.Enqueue(button);
             while(queue.Count > 0) {
                 MyButton curBut = queue.Dequeue();
-                if (!curBut.IsFlagCheck) OpenCell(curBut);
+                if (!curBut.IsFlagCheck) {
+                    MakeImage(curBut, CountBombs(curBut.Y, curBut.X));
+                    button.IsActive = false;
+                }
                 if (CountBombs(curBut.Y, curBut.X) == 0) {
                     for (int y = curBut.X - 1; y <= curBut.X + 1; y++) {
                         for (int x = curBut.Y - 1; x <= curBut.Y + 1; x++) {
@@ -257,10 +245,6 @@ namespace Minesweeper.Controllers {
                 }
             }
         }
-        private static void OpenCell(MyButton button) {
-            MakeImage(button, CountBombs(button.Y, button.X));
-            button.IsActive = false;
-        }
         private static int CountBombs(int xBut, int yBut) {
             int count_bombs = 0;
             for (int x = xBut - 1; x <= xBut + 1; x++) {
@@ -273,31 +257,31 @@ namespace Minesweeper.Controllers {
         private static void MakeImage(MyButton button, int value) {
             switch (value) {
                 case 0:
-                    button.Image = Image.FromFile("textures/empty.png");
+                    button.Image = Image.FromFile("textures/light/empty.png");
                     break;
                 case 1:
-                    button.Image = Image.FromFile("textures/one.png");
+                    button.Image = Image.FromFile("textures/light/one.png");
                     break;
                 case 2:
-                    button.Image = Image.FromFile("textures/two.png");
+                    button.Image = Image.FromFile("textures/light/two.png");
                     break;
                 case 3:
-                    button.Image = Image.FromFile("textures/three.png");
+                    button.Image = Image.FromFile("textures/light/three.png");
                     break;
                 case 4:
-                    button.Image = Image.FromFile("textures/four.png");
+                    button.Image = Image.FromFile("textures/light/four.png");
                     break;
                 case 5:
-                    button.Image = Image.FromFile("textures/five.png");
+                    button.Image = Image.FromFile("textures/light/five.png");
                     break;
                 case 6:
-                    button.Image = Image.FromFile("textures/six.png");
+                    button.Image = Image.FromFile("textures/light/six.png");
                     break;
                 case 7:
-                    button.Image = Image.FromFile("textures/seven.png");
+                    button.Image = Image.FromFile("textures/light/seven.png");
                     break;
                 case 8:
-                    button.Image = Image.FromFile("textures/eight.png");
+                    button.Image = Image.FromFile("textures/light/eight.png");
                     break;
             }
         }

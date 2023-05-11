@@ -20,6 +20,12 @@ namespace Minesweeper.Controllers {
             play.Init(playRead);
             btnClick.Init(btnClickRead);
         }
+        public static void ChangeSound(string path) {
+            btnClick.Stop();
+            btnClickRead = new AudioFileReader(path);
+            btnClick.Init(btnClickRead);
+            btnClick.Play();
+        }
         public async static void SaveToFile(Minesweeper current) {
             await Task.Run(() => {
                 using (StreamWriter file = new StreamWriter("info_settings.txt", false)) {
@@ -28,6 +34,8 @@ namespace Minesweeper.Controllers {
                     else file.WriteLine("music off");
                     file.WriteLine(current.difficult);
                     file.WriteLine(current.size);
+                    file.WriteLine(current.color);
+                    file.WriteLine(current.wallpaper);
                 }
             });
         }
@@ -38,6 +46,8 @@ namespace Minesweeper.Controllers {
                     if (file.ReadLine() == "music on") current.MusicCheck = true;
                     current.difficult = file.ReadLine();
                     current.size = file.ReadLine();
+                    current.color = file.ReadLine();
+                    current.wallpaper = file.ReadLine();
                 }
             });
         }
