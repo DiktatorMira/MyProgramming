@@ -1,0 +1,6 @@
+russian
+music off
+middle
+10x10
+white
+yes

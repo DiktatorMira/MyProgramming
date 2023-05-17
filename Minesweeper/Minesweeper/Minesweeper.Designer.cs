@@ -43,9 +43,11 @@
             this.menu24 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu24_1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu24_2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menu25 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menu25_1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menu25_2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu24_4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu24_3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu24_3_1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu24_3_2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolMenu5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMenu3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMenu4 = new System.Windows.Forms.ToolStripMenuItem();
             this.timerBox = new System.Windows.Forms.TextBox();
@@ -53,6 +55,7 @@
             this.musicCheck = new System.Windows.Forms.CheckBox();
             this.smile = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.menu24_5 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,12 +67,13 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolMenu1,
             this.toolMenu2,
+            this.toolMenu5,
             this.toolMenu3,
             this.toolMenu4});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(541, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(617, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -86,14 +90,11 @@
             this.menu21,
             this.menu22,
             this.menu23,
-            this.menu24,
-            this.menu25});
+            this.menu24});
             this.toolMenu2.Name = "toolMenu2";
             this.toolMenu2.Size = new System.Drawing.Size(107, 27);
             this.toolMenu2.Text = "Настройки";
             this.toolMenu2.Click += new System.EventHandler(this.MenuClicks);
-            this.toolMenu2.MouseEnter += new System.EventHandler(this.toolMenu2_MouseEnter);
-            this.toolMenu2.MouseLeave += new System.EventHandler(this.toolMenu2_MouseLeave);
             // 
             // menu21
             // 
@@ -234,7 +235,10 @@
             // 
             this.menu24.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu24_1,
-            this.menu24_2});
+            this.menu24_2,
+            this.menu24_4,
+            this.menu24_5,
+            this.menu24_3});
             this.menu24.Name = "menu24";
             this.menu24.Size = new System.Drawing.Size(240, 28);
             this.menu24.Text = "Темы оформления";
@@ -244,41 +248,55 @@
             // 
             this.menu24_1.Enabled = false;
             this.menu24_1.Name = "menu24_1";
-            this.menu24_1.Size = new System.Drawing.Size(157, 28);
+            this.menu24_1.Size = new System.Drawing.Size(224, 28);
             this.menu24_1.Text = "Светлая";
             this.menu24_1.Click += new System.EventHandler(this.ColorClick);
             // 
             // menu24_2
             // 
             this.menu24_2.Name = "menu24_2";
-            this.menu24_2.Size = new System.Drawing.Size(157, 28);
+            this.menu24_2.Size = new System.Drawing.Size(224, 28);
             this.menu24_2.Text = "Тёмная";
             this.menu24_2.Click += new System.EventHandler(this.ColorClick);
             // 
-            // menu25
+            // menu24_4
             // 
-            this.menu25.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menu25_1,
-            this.menu25_2});
-            this.menu25.Name = "menu25";
-            this.menu25.Size = new System.Drawing.Size(240, 28);
-            this.menu25.Text = "Обои";
-            this.menu25.Click += new System.EventHandler(this.MenuClicks);
+            this.menu24_4.Name = "menu24_4";
+            this.menu24_4.Size = new System.Drawing.Size(224, 28);
+            this.menu24_4.Text = "Монохромная";
+            this.menu24_4.Click += new System.EventHandler(this.ColorClick);
             // 
-            // menu25_1
+            // menu24_3
             // 
-            this.menu25_1.Enabled = false;
-            this.menu25_1.Name = "menu25_1";
-            this.menu25_1.Size = new System.Drawing.Size(224, 28);
-            this.menu25_1.Text = "Выкл";
-            this.menu25_1.Click += new System.EventHandler(this.WallpaperClick);
+            this.menu24_3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu24_3_1,
+            this.menu24_3_2});
+            this.menu24_3.Name = "menu24_3";
+            this.menu24_3.Size = new System.Drawing.Size(224, 28);
+            this.menu24_3.Text = "Обои";
+            this.menu24_3.Click += new System.EventHandler(this.MenuClicks);
             // 
-            // menu25_2
+            // menu24_3_1
             // 
-            this.menu25_2.Name = "menu25_2";
-            this.menu25_2.Size = new System.Drawing.Size(224, 28);
-            this.menu25_2.Text = "Вкл";
-            this.menu25_2.Click += new System.EventHandler(this.WallpaperClick);
+            this.menu24_3_1.Enabled = false;
+            this.menu24_3_1.Name = "menu24_3_1";
+            this.menu24_3_1.Size = new System.Drawing.Size(136, 28);
+            this.menu24_3_1.Text = "Выкл";
+            this.menu24_3_1.Click += new System.EventHandler(this.WallpaperClick);
+            // 
+            // menu24_3_2
+            // 
+            this.menu24_3_2.Name = "menu24_3_2";
+            this.menu24_3_2.Size = new System.Drawing.Size(136, 28);
+            this.menu24_3_2.Text = "Вкл";
+            this.menu24_3_2.Click += new System.EventHandler(this.WallpaperClick);
+            // 
+            // toolMenu5
+            // 
+            this.toolMenu5.Name = "toolMenu5";
+            this.toolMenu5.Size = new System.Drawing.Size(112, 27);
+            this.toolMenu5.Text = "Статистика";
+            this.toolMenu5.Click += new System.EventHandler(this.toolMenu5_Click);
             // 
             // toolMenu3
             // 
@@ -302,7 +320,7 @@
             this.timerBox.ReadOnly = true;
             this.timerBox.Size = new System.Drawing.Size(100, 35);
             this.timerBox.TabIndex = 1;
-            this.timerBox.Text = "00:00";
+            this.timerBox.Text = "00:00:00";
             this.timerBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // timer1
@@ -314,7 +332,7 @@
             // 
             this.musicCheck.AutoSize = true;
             this.musicCheck.Font = new System.Drawing.Font("KardinalPro ExtraBold", 10F, System.Drawing.FontStyle.Bold);
-            this.musicCheck.Location = new System.Drawing.Point(23, 56);
+            this.musicCheck.Location = new System.Drawing.Point(22, 60);
             this.musicCheck.Name = "musicCheck";
             this.musicCheck.Size = new System.Drawing.Size(90, 25);
             this.musicCheck.TabIndex = 2;
@@ -334,11 +352,18 @@
             // 
             this.toolTip1.AutomaticDelay = 1000;
             // 
+            // menu24_5
+            // 
+            this.menu24_5.Name = "menu24_5";
+            this.menu24_5.Size = new System.Drawing.Size(224, 28);
+            this.menu24_5.Text = "Армейская";
+            this.menu24_5.Click += new System.EventHandler(this.ColorClick);
+            // 
             // Minesweeper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 583);
+            this.ClientSize = new System.Drawing.Size(617, 583);
             this.Controls.Add(this.smile);
             this.Controls.Add(this.musicCheck);
             this.Controls.Add(this.timerBox);
@@ -386,9 +411,12 @@
         private System.Windows.Forms.ToolStripMenuItem menu24;
         private System.Windows.Forms.ToolStripMenuItem menu24_1;
         private System.Windows.Forms.ToolStripMenuItem menu24_2;
-        private System.Windows.Forms.ToolStripMenuItem menu25;
-        private System.Windows.Forms.ToolStripMenuItem menu25_1;
-        private System.Windows.Forms.ToolStripMenuItem menu25_2;
+        private System.Windows.Forms.ToolStripMenuItem menu24_3;
+        private System.Windows.Forms.ToolStripMenuItem menu24_3_1;
+        private System.Windows.Forms.ToolStripMenuItem menu24_3_2;
+        private System.Windows.Forms.ToolStripMenuItem toolMenu5;
+        private System.Windows.Forms.ToolStripMenuItem menu24_4;
+        private System.Windows.Forms.ToolStripMenuItem menu24_5;
     }
 }
 

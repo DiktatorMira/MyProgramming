@@ -1,6 +1,0 @@
-russian
-music off
-easy
-5x5
-black
-no

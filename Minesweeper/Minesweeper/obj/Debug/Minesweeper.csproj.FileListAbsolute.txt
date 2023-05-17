@@ -50,3 +50,5 @@ C:\Users\User\Desktop\C#_projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.
 C:\Users\User\Desktop\C#_projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.CopyComplete
 C:\Users\User\Desktop\C#_projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
 C:\Users\User\Desktop\C#_projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
+C:\Users\User\Desktop\C#_projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Statistics.resources
+C:\Users\User\Desktop\C#_projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.MyMessBox.resources

@@ -31,38 +31,10 @@ namespace Minesweeper.Controllers {
         public static void Init(Form current) {
             form = current;
             form1 = (Minesweeper)current;
-            ChangeField();
+            Database.ChangeField();
             buttons = new MyButton[height, width];
             InitMap(current);
             InitButtons(current);
-        }
-        private static void ChangeField() {
-            switch (form1.size) {
-                case "5x5":
-                    height = 5;
-                    width = 5;
-                    break;
-                case "10x5":
-                    height = 5;
-                    width = 10;
-                    break;
-                case "10x10":
-                    height = 10;
-                    width = 10;
-                    break;
-                case "14x10":
-                    height = 10;
-                    width = 14;
-                    break;
-                case "14x14":
-                    height = 14;
-                    width = 14;
-                    break;
-                case "30x14":
-                    height = 14;
-                    width = 30;
-                    break;
-            }
         }
         private static void InitMap(Form current) {
             current.Width = (width * cell_size) + 50;
@@ -72,17 +44,24 @@ namespace Minesweeper.Controllers {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
                     MyButton button = new MyButton();
-                    button.Location = new Point((j * cell_size) + 18, (i * cell_size) + 90);
+                    if(height == 5 && width == 5) button.Location = new Point((j * cell_size) + 105, (i * cell_size) + 90);
+                    else button.Location = new Point((j * cell_size) + 18, (i * cell_size) + 90);
                     button.Size = new Size(cell_size, cell_size);
                     button.MouseUp += new MouseEventHandler(MouseButtonPressed);
                     button.FlatAppearance.BorderSize = 0;
                     button.FlatStyle = FlatStyle.Flat;
-                    button.BackgroundImage = Image.FromFile("textures/light/button.png");
+                    button.BackgroundImage = Image.FromFile(Database.GetColorPath() + "button.png");
                     current.Controls.Add(button);
                     button.Y = i;
                     button.X = j;
+                    button.CurrentPircture = 0;
                     buttons[i, j] = button;
                 }
+            }
+        }
+        public static void ChangeButtonsColor() {
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) buttons[i, j].BackgroundImage = Image.FromFile(Database.GetColorPath() + "button.png");
             }
         }
         private static void MouseButtonPressed(object sender, MouseEventArgs e) {
@@ -101,18 +80,24 @@ namespace Minesweeper.Controllers {
                 Database.ChangeSound("sounds/flag.wav");
                 switch (button.CurrentPircture) {
                     case 0:
-                        button.BackgroundImage = Image.FromFile("textures/light/flag.png");
+                        button.BackgroundImage = Image.FromFile(Database.GetColorPath() + "flag.png");
                         button.CurrentPircture++;
                         button.IsFlagCheck = true;
-                        if(button.IsBomb) flag_bombs++;
+                        if (button.IsBomb) {
+                            Database.flags++;
+                            flag_bombs++;
+                        }
                         break;
                     case 1:
-                        button.BackgroundImage = Image.FromFile("textures/light/question.png");
+                        button.BackgroundImage = Image.FromFile(Database.GetColorPath() + "question.png");
                         button.CurrentPircture++;
-                        if (button.IsBomb) flag_bombs--;
+                        if (button.IsBomb) {
+                            Database.flags--;
+                            flag_bombs--;
+                        }
                         break;
                     case 2:
-                        button.BackgroundImage = Image.FromFile("textures/light/button.png");
+                        button.BackgroundImage = Image.FromFile(Database.GetColorPath() + "button.png");
                         button.CurrentPircture = 0;
                         button.IsFlagCheck = false;
                         break;
@@ -127,7 +112,6 @@ namespace Minesweeper.Controllers {
                     IsFirstStep = false;
                     GenerateField(button);
                 }
-                button.IsActive = false;
                 if (button.IsBomb) Explosion(button);
                 else OpenRegion(button);
             }
@@ -156,71 +140,42 @@ namespace Minesweeper.Controllers {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
                     if (buttons[i, j].IsBomb) {
-                        if (buttons[i, j].IsFlagCheck) buttons[i, j].Image = Image.FromFile("textures/light/flag.png");
-                        else buttons[i, j].Image = Image.FromFile("textures/light/bomb.png");
+                        if (buttons[i, j].IsFlagCheck) buttons[i, j].BackgroundImage = Image.FromFile(Database.GetColorPath() + "flag.png");
+                        else buttons[i, j].BackgroundImage = Image.FromFile(Database.GetColorPath() + "bomb.png");
                         buttons[i, j].IsActive = false;
                     }
-                    else if (!buttons[i, j].IsBomb && buttons[i, j].IsFlagCheck) buttons[i, j].Image = Image.FromFile("textures/light/incflag.png");
+                    else if (!buttons[i, j].IsBomb && buttons[i, j].IsFlagCheck) buttons[i, j].BackgroundImage = Image.FromFile(Database.GetColorPath() + "incflag.png");
                 }
             }
-            button.Image = Image.FromFile("textures/light/clickbomb.png");
-            form1.SetSmile(Image.FromFile("textures/light/smile1.png"));
+            button.BackgroundImage = Image.FromFile(Database.GetColorPath() + "clickbomb.png");
+            form1.SetSmile(Image.FromFile(Database.GetColorPath() + "smile1.png"));
             form1.StopTimer();
             Database.ChangeSound("sounds/bomb.wav");
-            if(form1.language == "russian") {
-                DialogResult res = MessageBox.Show("Вы проиграли! Хотите начать заново?",
-                "Смэрть", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-                Database.ChangeSound("sounds/click.wav");
-                if (res == DialogResult.Yes) Application.Restart();
-                else form1.Close();
-            }
-            else if(form1.language == "ukrainian") {
-                DialogResult res = MessageBox.Show("Ви програли! Бажаєте почати заново?",
-               "Помер", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-                Database.ChangeSound("sounds/click.wav");
-                if (res == DialogResult.Yes) Application.Restart();
-                else form1.Close();
-            }
-            else if(form1.language == "english") {
-                DialogResult res = MessageBox.Show("You lose! Wanna start over?",
-               "Eh...", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-                Database.ChangeSound("sounds/click.wav");
-                if (res == DialogResult.Yes) Application.Restart();
-                else form1.Close();
-            }
+            MyMessBox frm = null;
+            if (Database.language == "russian") frm = new MyMessBox($"Вы проиграли! Хотите начать заново?", 4);
+            else if (Database.language == "ukrainian") frm = new MyMessBox($"Ви програли! Бажаєте почати заново?", 4);
+            else if (Database.language == "english") frm = new MyMessBox($"You lose! Wanna start over?", 4);
+            frm.MainForm = form1;
+            DialogResult res = frm.ShowDialog();
         }
         private static void Victory() {
             Database.ChangeSound("sounds/victory.wav");
             form1.StopTimer();
-            form1.SetSmile(Image.FromFile("textures/light/smile2.png"));
+            form1.SetSmile(Image.FromFile(Database.GetColorPath() + "smile2.png"));
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
                     MakeImage(buttons[i, j], CountBombs(i, j));
-                    if (buttons[i, j].IsBomb) buttons[i, j].Image = Image.FromFile("textures/light/flag.png");
+                    if (buttons[i, j].IsBomb) buttons[i, j].BackgroundImage = Image.FromFile(Database.GetColorPath() + "flag.png");
                     buttons[i, j].IsActive = false;
                 }
             }
-            if (form1.language == "russian") {
-                DialogResult res = MessageBox.Show($"Вы выиграли! Ваше время: {form1.GetTime()}. Хотите начать заново?",
-                "Поздравляем!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                Database.ChangeSound("sounds/click.wav");
-                if (res == DialogResult.Yes) Application.Restart();
-                else form1.Close();
-            }
-            else if(form1.language == "ukrainian") {
-                DialogResult res = MessageBox.Show($"Ви виграли! Ваш час: {form1.GetTime()}. Бажаєте почати заново?",
-                "Вітаємо!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                Database.ChangeSound("sounds/click.wav");
-                if (res == DialogResult.Yes) Application.Restart();
-                else form1.Close();
-            }
-            else if (form1.language == "english") {
-                DialogResult res = MessageBox.Show($"You have won! Your time: {form1.GetTime()}. Wanna start over?",
-                "Congratulations!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                Database.ChangeSound("sounds/click.wav");
-                if (res == DialogResult.Yes) Application.Restart();
-                else form1.Close();
-            }
+            Database.games_victory++;
+            MyMessBox frm = null;
+            if (Database.language == "russian") frm = new MyMessBox($"Вы выиграли! Ваше время:\n{form1.GetTime()}.\nХотите начать заново?", 3);
+            else if (Database.language == "ukrainian") frm = new MyMessBox($"Ви виграли! Ваш час:\n{form1.GetTime()}.\nБажаєте почати заново?", 3);
+            else if (Database.language == "english") frm = new MyMessBox($"You have won! Your time:\n{form1.GetTime()}.\nWanna start over?", 3);
+            frm.MainForm = form1;
+            DialogResult res = frm.ShowDialog();
         }
         private static void OpenRegion(MyButton button) {
             Queue<MyButton> queue = new Queue<MyButton>();
@@ -229,7 +184,7 @@ namespace Minesweeper.Controllers {
                 MyButton curBut = queue.Dequeue();
                 if (!curBut.IsFlagCheck) {
                     MakeImage(curBut, CountBombs(curBut.Y, curBut.X));
-                    button.IsActive = false;
+                    curBut.IsActive = false;
                 }
                 if (CountBombs(curBut.Y, curBut.X) == 0) {
                     for (int y = curBut.X - 1; y <= curBut.X + 1; y++) {
@@ -255,35 +210,7 @@ namespace Minesweeper.Controllers {
             return count_bombs;
         }
         private static void MakeImage(MyButton button, int value) {
-            switch (value) {
-                case 0:
-                    button.Image = Image.FromFile("textures/light/empty.png");
-                    break;
-                case 1:
-                    button.Image = Image.FromFile("textures/light/one.png");
-                    break;
-                case 2:
-                    button.Image = Image.FromFile("textures/light/two.png");
-                    break;
-                case 3:
-                    button.Image = Image.FromFile("textures/light/three.png");
-                    break;
-                case 4:
-                    button.Image = Image.FromFile("textures/light/four.png");
-                    break;
-                case 5:
-                    button.Image = Image.FromFile("textures/light/five.png");
-                    break;
-                case 6:
-                    button.Image = Image.FromFile("textures/light/six.png");
-                    break;
-                case 7:
-                    button.Image = Image.FromFile("textures/light/seven.png");
-                    break;
-                case 8:
-                    button.Image = Image.FromFile("textures/light/eight.png");
-                    break;
-            }
+             button.BackgroundImage = Image.FromFile(Database.GetColorPath() + value + ".png");
         }
     }
 }
